@@ -5,6 +5,9 @@
  */
 package view;
 
+import model.bean.Categoria;
+import model.dao.CategoriaDAO;
+
 /**
  *
  * @author Administrador
@@ -13,9 +16,18 @@ public class viewCadastro extends javax.swing.JFrame {
 
     /**
      * Creates new form viewCadastro
+     * Metodo Construtor
      */
     public viewCadastro() {
         initComponents();
+        preencherComboBoxCategoria();
+    }
+    
+    private void preencherComboBoxCategoria(){
+        CategoriaDAO catDao = new CategoriaDAO();
+        for(Categoria cat:catDao.findAll()){
+            jComboBoxCategorias.addItem(cat);
+        }
     }
 
     /**
@@ -98,7 +110,7 @@ public class viewCadastro extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonExcluir)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelQtd)
                         .addGap(92, 92, 92)
@@ -110,7 +122,7 @@ public class viewCadastro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelCategorias)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBoxCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBoxCategorias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(35, 35, 35))
             .addComponent(jScrollPane1)
         );
